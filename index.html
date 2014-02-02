@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang=en ng-app ng-controller=AppCtrl>
+
+<meta charset=utf-8>
+<title>Hackenbush</title>
+
+<style>
+  * { box-sizing: border-box; }
+  #info {
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 12px;
+  }
+  #info > span {
+    padding: 3px 6px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  #stage {
+    display: block;
+    padding: 18px;
+    margin: 0 auto;
+  }
+  .handle {
+    opacity: .3;
+  }
+  .handle.current:hover {
+    cursor: pointer;
+    stroke-width: 15;
+  }
+</style>
+
+<div id=info>
+  <span ng-hide=winner ng-style='{background: turn}'>Play {{turn}}</span>
+  <span ng-show=winner ng-style='{background: winner}'>
+    <b>Game Over. The winner is <i>{{winner}}</i>.</b>
+  </span>
+</div>
+
+<svg id=stage width='{{width}}' height='{{height}}' version=1.1>
+  <defs>
+    <circle id=point r=3 fill=none stroke-width=2 />
+  </defs>
+
+  <!-- Floor -->
+  <line x1=20 y1='{{floorY}}' x2='{{width - 20}}' y2='{{floorY}}' stroke=brown
+    stroke-width=5 />
+  <use xlink:href=#point x=18 y='{{floorY}}' stroke=brown />
+  <use xlink:href=#point x='{{width - 18}}' y='{{floorY}}' stroke=brown />
+
+  <g ng-repeat='line in bush'>
+    <line x1='{{line.x1}}' y1='{{line.y1}}' x2='{{line.x2}}' y2='{{line.y2}}'
+      stroke='{{line.color}}' stroke-width=3
+      ng-style='{opacity: line.gone ? .3 : 1}' />
+    <line x1='{{line.x1}}' y1='{{line.y1}}' x2='{{line.x2}}' y2='{{line.y2}}'
+      stroke='{{line.color}}' stroke-width=10 stroke-linecap=round
+      class=handle ng-class='{current: turn == line.color || line.color == "green"}'
+      ng-hide=line.gone ng-click='strike(line)' />
+  </g>
+
+  <circle ng-repeat='point in points' cx='{{point[0]}}' cy='{{point[1]}}' r=5 fill=black />
+</svg>
+
+<script src=angular.min.js></script>
+<script src=main.js></script>
