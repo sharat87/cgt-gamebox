@@ -16,6 +16,8 @@ angular.module('gamebox', [])
 
     Hackenbush.prototype = {
 
+        tpl: 'hackenbush.html',
+
         cacheVertices: function () {
             var verts = [], sverts = [];
             for (var i = this.lines.length; i-- > 0;) {
@@ -87,14 +89,16 @@ angular.module('gamebox', [])
 })
 
 .controller('MainCtrl', function ($scope, Hackenbush) {
-    $scope.game = new Hackenbush(800, 250, [
-        {x1: 150, y1: 230, x2: 200, y2: 130, color: 'red'},
-        {x1: 250, y1: 230, x2: 200, y2: 130, color: 'red'},
-        {x1: 150, y1: 70, x2: 200, y2: 130, color: 'blue'},
-        {x1: 500, y1: 130, x2: 200, y2: 130, color: 'blue'},
-        {x1: 450, y1: 230, x2: 500, y2: 130, color: 'blue'},
-        {x1: 550, y1: 230, x2: 500, y2: 130, color: 'blue'},
-        {x1: 600, y1: 20, x2: 500, y2: 130, color: 'red'},
-        {x1: 600, y1: 20, x2: 650, y2: 50, color: 'green'}
-    ]);
+    $scope.games = [
+        new Hackenbush(800, 250, [
+            {x1: 150, y1: 230, x2: 200, y2: 130, color: 'red'},
+            {x1: 250, y1: 230, x2: 200, y2: 130, color: 'red'},
+            {x1: 150, y1: 70, x2: 200, y2: 130, color: 'blue'},
+            {x1: 500, y1: 130, x2: 200, y2: 130, color: 'blue'},
+            {x1: 450, y1: 230, x2: 500, y2: 130, color: 'blue'},
+            {x1: 550, y1: 230, x2: 500, y2: 130, color: 'blue'},
+            {x1: 600, y1: 20, x2: 500, y2: 130, color: 'red'},
+            {x1: 600, y1: 20, x2: 650, y2: 50, color: 'green'}
+        ])
+    ];
 });
