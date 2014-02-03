@@ -2,16 +2,17 @@
 <html lang=en ng-app ng-controller=AppCtrl>
 
 <meta charset=utf-8>
-<title>Hackenbush</title>
+<title>Gamebox</title>
 
 <link rel=stylesheet href=styles.css>
 
-<div id=info>
-  <span ng-hide=winner ng-style='{background: turn}'>Play {{turn}}</span>
-  <span ng-show=winner ng-style='{background: winner}'>
+<header>
+  <h1>Hackenbush</h1>
+  <span ng-hide=winner class=label ng-style='{background: turn}'>Play {{turn}}</span>
+  <span ng-show=winner class=label ng-style='{background: winner}'>
     <b>Game Over. The winner is <i>{{winner}}</i>.</b>
   </span>
-</div>
+</header>
 
 <svg id=stage width='{{width}}' height='{{height}}' version=1.1>
   <defs>
@@ -39,6 +40,7 @@
 
 <footer>
   Built by <a href='http://sharats.me'>Shrikant Sharat Kandula</a>.
+  Source code on <a href='https://github.com/sharat87/cgt-gamebox'>github project page</a>.
 </footer>
 
 <script src=angular.min.js></script>
