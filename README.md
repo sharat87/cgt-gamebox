@@ -9,6 +9,7 @@ Playing games togather (i.e., summing games) is not currently implemented.
 
 ## Games list
 
-- [x] Hackenbush
-- [ ] Nim
-- [ ] CutCake
+- ~~Hackenbush~~
+- Nim
+- CutCake
+- ...
