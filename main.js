@@ -44,8 +44,8 @@ angular.module('gamebox', [])
             var heldPoints = [], traversalDone = false;
             while (true) {
                 var prevHeld = heldPoints.length;
-                for (var i = this.lines.length; i-- > 0;) {
-                    var line = this.lines[i];
+                for (var i = this.clines.length; i-- > 0;) {
+                    var line = this.clines[i];
                     var a = [line.x1, line.y1].join(), b = [line.x2, line.y2].join();
                     if (line.gone) {
                         continue;
@@ -72,8 +72,8 @@ angular.module('gamebox', [])
         },
 
         checkWin: function () {
-            for (var i = this.lines.length; i-- > 0;) {
-                var line = this.lines[i];
+            for (var i = this.clines.length; i-- > 0;) {
+                var line = this.clines[i];
                 if (!line.gone && (line.color == $rootScope.turn || line.color == 'green'))
                     return;
             }
