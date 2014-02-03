@@ -1,0 +1,47 @@
+* { box-sizing: border-box; }
+
+body {
+    padding-bottom: 48px;
+}
+
+#info {
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 12px;
+}
+
+#info > span {
+    padding: 3px 6px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+#stage {
+    display: block;
+    padding: 18px;
+    margin: 0 auto;
+}
+
+.handle {
+    opacity: .3;
+}
+
+.handle.current:hover {
+    cursor: pointer;
+    stroke-width: 15;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    padding: 0 0 6px;
+    opacity: .7;
+    font-size: 1.2em;
+    width: 100%;
+}
+
+footer:hover {
+    opacity: 1;
+}
