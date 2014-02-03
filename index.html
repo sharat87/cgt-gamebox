@@ -14,28 +14,28 @@
   </span>
 </header>
 
-<svg id=stage width='{{width}}' height='{{height}}' version=1.1>
+<svg id=stage width='{{game.width}}' height='{{game.height}}' version=1.1>
   <defs>
     <circle id=point r=3 fill=none stroke-width=2 />
   </defs>
 
   <!-- Floor -->
-  <line x1=20 y1='{{floorY}}' x2='{{width - 20}}' y2='{{floorY}}' stroke=brown
-    stroke-width=5 />
-  <use xlink:href=#point x=18 y='{{floorY}}' stroke=brown />
-  <use xlink:href=#point x='{{width - 18}}' y='{{floorY}}' stroke=brown />
+  <line x1=20 y1='{{game.floorY}}' x2='{{game.width - 20}}' y2='{{game.floorY}}'
+    stroke=brown stroke-width=5 />
+  <use xlink:href=#point x=18 y='{{game.floorY}}' stroke=brown />
+  <use xlink:href=#point x='{{game.width - 18}}' y='{{game.floorY}}' stroke=brown />
 
-  <g ng-repeat='line in bush'>
+  <g ng-repeat='line in game.lines'>
     <line x1='{{line.x1}}' y1='{{line.y1}}' x2='{{line.x2}}' y2='{{line.y2}}'
       stroke='{{line.color}}' stroke-width=3
       ng-style='{opacity: line.gone ? .3 : 1}' />
     <line x1='{{line.x1}}' y1='{{line.y1}}' x2='{{line.x2}}' y2='{{line.y2}}'
       stroke='{{line.color}}' stroke-width=10 stroke-linecap=round
       class=handle ng-class='{current: turn == line.color || line.color == "green"}'
-      ng-hide=line.gone ng-click='strike(line)' />
+      ng-hide=line.gone ng-click='game.strike(line)' />
   </g>
 
-  <circle ng-repeat='point in points' cx='{{point[0]}}' cy='{{point[1]}}' r=5 fill=black />
+  <circle ng-repeat='v in game.verts' cx='{{v[0]}}' cy='{{v[1]}}' r=5 fill=black />
 </svg>
 
 <footer>
