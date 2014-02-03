@@ -1,4 +1,6 @@
-function AppCtrl($scope) {
+angular.module('gamebox', [])
+
+.controller('MainCtrl', function ($scope) {
     $scope.width = 800;
     $scope.height = 400;
 
@@ -84,4 +86,4 @@ function AppCtrl($scope) {
         }
         $scope.winner = $scope.turn == 'red' ? 'blue' : 'red';
     }
-}
+});
