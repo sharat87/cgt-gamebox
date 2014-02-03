@@ -80,7 +80,7 @@ angular.module('gamebox', [])
                 if (!line.gone && (line.color == $rootScope.turn || line.color == 'green'))
                     return;
             }
-            $scope.winner = $scope.turn == 'red' ? 'blue' : 'red';
+            $rootScope.winner = $rootScope.turn == 'red' ? 'blue' : 'red';
         }
 
     };
