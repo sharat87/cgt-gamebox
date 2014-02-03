@@ -36,6 +36,7 @@ angular.module('gamebox', [])
         },
 
         strike: function (line) {
+            if (line.color != $rootScope.turn) return;
             line.gone = true;
             this.strikeFloating();
             $rootScope.turn = $rootScope.turn == 'red' ? 'blue' : 'red';
