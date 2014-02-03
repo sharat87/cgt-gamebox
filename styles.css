@@ -82,12 +82,20 @@ footer {
     bottom: 0;
     text-align: center;
     padding: 0 0 6px;
-    opacity: .7;
+    opacity: .8;
     font-size: 1.2em;
     width: 100%;
-    background-color: white;
+    background-color: #FDF6E3;
 }
 
 footer:hover {
     opacity: 1;
+}
+
+footer a {
+    color: #268BD2;
+}
+
+footer a:visited {
+    color: #6C71C4;
 }

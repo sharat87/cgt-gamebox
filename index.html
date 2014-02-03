@@ -28,7 +28,7 @@
       </defs>
 
       <!-- Floor -->
-      <line x1=2 y1=0 x2='{{game.width - 40}}' y2=0 stroke=#002B36 stroke-width=4 />
+      <line x1=2 y1=0 x2='{{game.width - 40}}' y2=0 stroke=#586e75 stroke-width=4 />
       <use xlink:href=#point x=0 y=0 stroke=#002B36 />
       <use xlink:href=#point x='{{game.width - 38}}' y=0 stroke=#002B36 />
 
@@ -43,7 +43,7 @@
       </g>
 
       <!-- Vertices -->
-      <circle ng-repeat='v in game.verts' cx='{{v.x}}' cy='{{-v.y}}' r=5 fill=black />
+      <circle ng-repeat='v in game.verts' cx='{{v.x}}' cy='{{-v.y}}' r=5 fill=#002B36 />
     </g>
   </svg>
 </script>
