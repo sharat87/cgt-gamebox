@@ -13,3 +13,7 @@ Playing games togather (i.e., summing games) is not currently implemented.
 - Nim
 - CutCake
 - ...
+
+## License
+
+[MIT License](http://mitl.sharats.me)
