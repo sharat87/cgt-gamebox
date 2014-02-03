@@ -6,11 +6,10 @@ angular.module('gamebox', [])
 
 .factory('Hackenbush', function ($rootScope) {
 
-    function Hackenbush(width, height, lines) {
-        this.lines = lines;
-        this.width = width;
-        this.height = height;
-        this.floorY = height - 20;
+    function Hackenbush(game) {
+        // `game` is {width: ..., height: ..., lines: ...}
+        angular.extend(this, game);
+        this.floorY = this.height - 20;
         this.cacheVertices();
     }
 
@@ -85,20 +84,32 @@ angular.module('gamebox', [])
 
     };
 
+    var games = {
+        horse: {
+            width: 800,
+            height: 250,
+            lines: [
+                {x1: 150, y1: 230, x2: 200, y2: 130, color: 'red'},
+                {x1: 250, y1: 230, x2: 200, y2: 130, color: 'red'},
+                {x1: 150, y1: 70, x2: 200, y2: 130, color: 'blue'},
+                {x1: 500, y1: 130, x2: 200, y2: 130, color: 'blue'},
+                {x1: 450, y1: 230, x2: 500, y2: 130, color: 'blue'},
+                {x1: 550, y1: 230, x2: 500, y2: 130, color: 'blue'},
+                {x1: 600, y1: 20, x2: 500, y2: 130, color: 'red'},
+                {x1: 600, y1: 20, x2: 650, y2: 50, color: 'green'}
+            ]
+        }
+    };
+
+    Hackenbush.getGame = function (name) {
+        return new Hackenbush(games[name]);
+    };
+
     return Hackenbush;
 })
 
 .controller('MainCtrl', function ($scope, Hackenbush) {
     $scope.games = [
-        new Hackenbush(800, 250, [
-            {x1: 150, y1: 230, x2: 200, y2: 130, color: 'red'},
-            {x1: 250, y1: 230, x2: 200, y2: 130, color: 'red'},
-            {x1: 150, y1: 70, x2: 200, y2: 130, color: 'blue'},
-            {x1: 500, y1: 130, x2: 200, y2: 130, color: 'blue'},
-            {x1: 450, y1: 230, x2: 500, y2: 130, color: 'blue'},
-            {x1: 550, y1: 230, x2: 500, y2: 130, color: 'blue'},
-            {x1: 600, y1: 20, x2: 500, y2: 130, color: 'red'},
-            {x1: 600, y1: 20, x2: 650, y2: 50, color: 'green'}
-        ])
+        Hackenbush.getGame('horse')
     ];
 });
