@@ -108,8 +108,8 @@ angular.module('gamebox', [])
                 {from: 'e', to: 'b', color: 'blue'},
                 {from: 'e', to: 'f', color: 'blue'},
                 {from: 'e', to: 'g', color: 'blue'},
-                {from: 'e', to: 'h', color: 'blue'},
-                {from: 'i', to: 'h', color: 'blue'}
+                {from: 'e', to: 'h', color: 'red'},
+                {from: 'i', to: 'h', color: 'green'}
             ]
         }
     };
