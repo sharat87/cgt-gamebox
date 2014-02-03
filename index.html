@@ -7,11 +7,15 @@
 <link rel=stylesheet href=styles.css>
 
 <header>
-  <h1>Gamebox</h1>
-  <span ng-hide=winner class=label ng-style='{background: turn}'>Play {{turn}}</span>
-  <span ng-show=winner class=label ng-style='{background: winner}'>
-    <b>Game Over. The winner is <i>{{winner}}</i>.</b>
-  </span>
+  <div class=left>
+    <h1>Gamebox</h1>
+  </div>
+  <div class=right>
+    <span ng-hide=winner class='status {{turn}}'>Play {{turn}}</span>
+    <span ng-show=winner class='status {{winner}}'>
+      <b>Game Over. The winner is <i>{{winner}}</i>.</b>
+    </span>
+  </div>
 </header>
 
 <div ng-repeat='game in games' ng-include='game.tpl'></div>
@@ -24,16 +28,16 @@
       </defs>
 
       <!-- Floor -->
-      <line x1=2 y1=0 x2='{{game.width - 40}}' y2=0 stroke=brown stroke-width=5 />
-      <use xlink:href=#point x=0 y=0 stroke=brown />
-      <use xlink:href=#point x='{{game.width - 38}}' y=0 stroke=brown />
+      <line x1=2 y1=0 x2='{{game.width - 40}}' y2=0 stroke=#002B36 stroke-width=4 />
+      <use xlink:href=#point x=0 y=0 stroke=#002B36 />
+      <use xlink:href=#point x='{{game.width - 38}}' y=0 stroke=#002B36 />
 
       <!-- Lines -->
-      <g ng-repeat='line in game.clines'>
+      <g ng-repeat='line in game.clines' class='color-{{line.color}}'>
         <line x1='{{line.x1}}' y1='{{-line.y1}}' x2='{{line.x2}}' y2='{{-line.y2}}'
-          stroke='{{line.color}}' stroke-width=3 ng-style='{opacity: line.gone ? .3 : 1}' />
+          stroke-width=3 ng-style='{opacity: line.gone ? .3 : 1}' />
         <line x1='{{line.x1}}' y1='{{-line.y1}}' x2='{{line.x2}}' y2='{{-line.y2}}'
-          stroke='{{line.color}}' stroke-width=10 stroke-linecap=round
+          stroke-width=10 stroke-linecap=round
           class=handle ng-class='{current: turn == line.color || line.color == "green"}'
           ng-hide=line.gone ng-click='game.strike(line)' />
       </g>
