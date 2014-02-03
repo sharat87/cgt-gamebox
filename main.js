@@ -7,32 +7,29 @@ angular.module('gamebox', [])
 .factory('Hackenbush', function ($rootScope) {
 
     function Hackenbush(game) {
-        // `game` is {width: ..., height: ..., lines: ...}
+        // `game` is {width: ..., height: ..., verts: ..., lines: ...}
         angular.extend(this, game);
-        this.floorY = this.height - 20;
-        this.cacheVertices();
+        this.compileLines();
     }
 
     Hackenbush.prototype = {
 
         tpl: 'hackenbush.html',
 
-        cacheVertices: function () {
-            var verts = [], sverts = [];
+        // Builds a `clines` array using `verts` and `lines` which can be easily
+        // used by the template to render the game.
+        compileLines: function () {
+            this.clines = [];
             for (var i = this.lines.length; i-- > 0;) {
                 var line = this.lines[i];
-                var point = [line.x1, line.y1].join();
-                if (sverts.indexOf(point) < 0) {
-                    sverts.push(point);
-                    verts.push([line.x1, line.y1]);
-                }
-                point = [line.x2, line.y2].join();
-                if (sverts.indexOf(point) < 0) {
-                    sverts.push(point);
-                    verts.push([line.x2, line.y2]);
-                }
+                this.clines.push({
+                    x1: this.verts[line.from].x,
+                    y1: this.verts[line.from].y,
+                    x2: this.verts[line.to].x,
+                    y2: this.verts[line.to].y,
+                    color: line.color
+                });
             }
-            this.verts = verts;
         },
 
         strike: function (line) {
@@ -52,7 +49,7 @@ angular.module('gamebox', [])
                     var a = [line.x1, line.y1].join(), b = [line.x2, line.y2].join();
                     if (line.gone) {
                         continue;
-                    } else if (line.y1 == this.floorY || line.y2 == this.floorY) {
+                    } else if (line.y1 === 0 || line.y2 === 0) {
                         if (heldPoints.indexOf(a) < 0)
                             heldPoints.push(a);
                         if (heldPoints.indexOf(b) < 0)
@@ -85,19 +82,34 @@ angular.module('gamebox', [])
 
     };
 
+    /**
+     * Verts are x-y points, with the coordinate system translated to have the
+     * origin at the left end of the ground and positive y going upwards.
+     */
     var games = {
         horse: {
             width: 800,
             height: 250,
+            verts: {
+                a: {x: 150, y: 0},
+                b: {x: 200, y: 100},
+                c: {x: 250, y: 0},
+                d: {x: 150, y: 160},
+                e: {x: 500, y: 100},
+                f: {x: 450, y: 0},
+                g: {x: 550, y: 0},
+                h: {x: 600, y: 210},
+                i: {x: 650, y: 180}
+            },
             lines: [
-                {x1: 150, y1: 230, x2: 200, y2: 130, color: 'red'},
-                {x1: 250, y1: 230, x2: 200, y2: 130, color: 'red'},
-                {x1: 150, y1: 70, x2: 200, y2: 130, color: 'blue'},
-                {x1: 500, y1: 130, x2: 200, y2: 130, color: 'blue'},
-                {x1: 450, y1: 230, x2: 500, y2: 130, color: 'blue'},
-                {x1: 550, y1: 230, x2: 500, y2: 130, color: 'blue'},
-                {x1: 600, y1: 20, x2: 500, y2: 130, color: 'red'},
-                {x1: 600, y1: 20, x2: 650, y2: 50, color: 'green'}
+                {from: 'a', to: 'b', color: 'red'},
+                {from: 'c', to: 'b', color: 'red'},
+                {from: 'd', to: 'b', color: 'blue'},
+                {from: 'e', to: 'b', color: 'blue'},
+                {from: 'e', to: 'f', color: 'blue'},
+                {from: 'e', to: 'g', color: 'blue'},
+                {from: 'e', to: 'h', color: 'blue'},
+                {from: 'i', to: 'h', color: 'blue'}
             ]
         }
     };
