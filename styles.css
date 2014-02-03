@@ -40,6 +40,7 @@ footer {
     opacity: .7;
     font-size: 1.2em;
     width: 100%;
+    background-color: white;
 }
 
 footer:hover {
