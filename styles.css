@@ -10,6 +10,10 @@ header {
     margin-bottom: 12px;
 }
 
+header > h1 {
+    margin: 0 0 6px;
+}
+
 header > .label {
     color: white;
     padding: 3px 6px;
